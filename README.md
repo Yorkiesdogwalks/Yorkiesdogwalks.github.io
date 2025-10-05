@@ -1,1 +1,207 @@
-# Yorkiesdogwalks.github.io
+[yorkies_dog_walking_website_single_file (2).html](https://github.com/user-attachments/files/22705466/yorkies_dog_walking_website_single_file.2.html)
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yorkies • Dog Walking — Epsom, Auckland</title>
+  <meta name="description" content="Yorkies — reliable dog walking in Epsom, Auckland. Run by a 15-year-old Auckland Grammar student." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .form-section { max-width: 900px; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <header class="bg-white shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-6 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-amber-300 flex items-center justify-center font-bold text-lg">Y</div>
+        <div>
+          <h1 class="text-xl font-bold">Yorkies</h1>
+          <p class="text-sm text-gray-500">Dog walking in Epsom, Auckland — run by a 15 y/o Auckland Grammar student</p>
+        </div>
+      </div>
+      <nav class="space-x-4 text-sm">
+        <a href="#how" class="hover:underline">How it works</a>
+        <a href="#signup" class="hover:underline">Apply</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl font-extrabold">Reliable dog walking near you</h2>
+        <p class="mt-4 text-gray-600">Friendly, safe walks for your dog in Epsom. Tailored walks, pup check-ins, and clear communication with owners. This service is run by a responsible 15-year-old student.</p>
+
+        <ul class="mt-6 space-y-2 text-gray-700">
+          <li>• 30–60 minute walks</li>
+          <li>• One-on-one walks with care and attention</li>
+          <li>• Photo updates during the walk on request</li>
+          <li>• Secure handling and respect for your home's rules</li>
+        </ul>
+
+        <a href="#signup" class="inline-block mt-6 px-5 py-3 bg-amber-400 text-white rounded-lg font-medium">Apply to have your dog walked</a>
+      </div>
+      <div class="rounded-lg overflow-hidden shadow-sm">
+        <img alt="Happy dog on a walk" src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" class="w-full h-64 object-cover" />
+      </div>
+    </section>
+
+    <section id="how" class="mt-12 bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-2xl font-bold">How Yorkies works</h3>
+      <ol class="mt-4 list-decimal list-inside space-y-2 text-gray-700">
+        <li>Complete the application form below with details about you and your dog.</li>
+        <li>You'll receive a confirmation email once your form is sent successfully.</li>
+        <li>I'll contact you to confirm availability and any special needs.</li>
+        <li>Payment and any insurance details are arranged after the first meeting.</li>
+      </ol>
+    </section>
+
+    <section id="signup" class="mt-10 form-section bg-white p-6 rounded-lg shadow-sm">
+      <h3 class="text-2xl font-bold mb-4">Application form — Request walks</h3>
+      
+      <!-- Update: uses Formspree for email notifications -->
+      <form id="applicationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
+        <fieldset class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Owner full name</label>
+            <input required name="ownerName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Phone number</label>
+            <input required type="tel" name="phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="021 123 4567" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">Email</label>
+            <input required type="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="name@example.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Address (Epsom, Auckland)</label>
+            <input required name="address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="Street, Suburb" />
+          </div>
+        </fieldset>
+
+        <hr />
+
+        <fieldset class="grid md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium">Dog's name</label>
+            <input required name="dogName" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Breed</label>
+            <input name="breed" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="e.g. Staffy, Labrador" />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">Age</label>
+            <input type="number" min="0" name="age" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Size</label>
+            <select name="size" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Temperament / notes</label>
+            <textarea name="temperament" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"></textarea>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Medical conditions / medication</label>
+            <textarea name="medical" rows="2" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium">How often</label>
+            <select name="frequency" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+              <option value="oneoff">One-off</option>
+              <option value="weekly">Weekly</option>
+              <option value="multiple">Multiple per week</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Preferred days / times</label>
+            <input name="times" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="e.g. Mon/Wed afternoon" />
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium">Emergency contact (name & phone)</label>
+            <input name="emergency" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2" placeholder="Another contact if you're unavailable" />
+          </div>
+        </fieldset>
+
+        <div>
+          <label class="inline-flex items-center">
+            <input type="checkbox" name="consentPhotos" class="rounded border-gray-300" />
+            <span class="ml-2 text-sm">I consent to receiving photo updates during walks.</span>
+          </label>
+        </div>
+
+        <div>
+          <label class="inline-flex items-center">
+            <input required type="checkbox" name="waiver" class="rounded border-gray-300" />
+            <span class="ml-2 text-sm">I confirm I am the dog's owner or authorised carer and the information provided is accurate.</span>
+          </label>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button type="submit" class="px-4 py-2 rounded-md bg-amber-400 text-white font-medium">Submit application</button>
+          <button type="reset" class="px-3 py-2 rounded-md border">Reset</button>
+        </div>
+
+        <p id="formMessage" class="text-sm text-green-600 mt-2"></p>
+      </form>
+
+      <p class="mt-4 text-xs text-gray-500">After submission, an email is sent directly to Yorkies with your details. You’ll also receive a confirmation message from Formspree.</p>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t mt-10">
+    <div class="max-w-5xl mx-auto px-4 py-6 text-sm text-gray-600 flex justify-between">
+      <div>Yorkies — Epsom, Auckland</div>
+      <div>Run by an Auckland Grammar student • Age: 15</div>
+    </div>
+  </footer>
+
+  <script>
+    // Handle message display when submitted
+    const form = document.getElementById('applicationForm');
+    const msg = document.getElementById('formMessage');
+
+    form.addEventListener('submit', function(){
+      msg.textContent = 'Submitting... please wait';
+      msg.classList.remove('text-green-600','text-red-600');
+      msg.classList.add('text-gray-600');
+    });
+
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        msg.textContent = 'Application submitted successfully! You’ll receive an email confirmation.';
+        msg.classList.remove('text-gray-600');
+        msg.classList.add('text-green-600');
+        form.reset();
+      } else {
+        msg.textContent = 'There was a problem submitting your form. Please try again or email directly.';
+        msg.classList.remove('text-gray-600');
+        msg.classList.add('text-red-600');
+      }
+    });
+  </script>
+</body>
+</html>
