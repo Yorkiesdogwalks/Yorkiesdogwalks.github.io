@@ -1,4 +1,5 @@
-[yorkies_dog_walking_website_single_file (2).html](https://github.com/user-attachments/files/22705466/yorkies_dog_walking_website_single_file.2.html)
+
+[yorkies_dog_walking_website_single_file (3).html](https://github.com/user-attachments/files/22705472/yorkies_dog_walking_website_single_file.3.html)
 <!doctype html>
 <html lang="en">
 <head>
@@ -172,35 +173,61 @@
   </footer>
 
   <script>
-    // Handle message display when submitted
-    const form = document.getElementById('applicationForm');
-    const msg = document.getElementById('formMessage');
+    // Improved form handling: warning if Formspree endpoint not set, fetch submit + fallback to normal submit
+    document.addEventListener('DOMContentLoaded', function(){
+      const form = document.getElementById('applicationForm');
+      const msg = document.getElementById('formMessage');
+      const action = form.getAttribute('action') || '';
 
-    form.addEventListener('submit', function(){
-      msg.textContent = 'Submitting... please wait';
-      msg.classList.remove('text-green-600','text-red-600');
-      msg.classList.add('text-gray-600');
-    });
-
-    form.addEventListener('submit', async function(e){
-      e.preventDefault();
-      const data = new FormData(form);
-      const response = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        msg.textContent = 'Application submitted successfully! You’ll receive an email confirmation.';
-        msg.classList.remove('text-gray-600');
-        msg.classList.add('text-green-600');
-        form.reset();
-      } else {
-        msg.textContent = 'There was a problem submitting your form. Please try again or email directly.';
-        msg.classList.remove('text-gray-600');
-        msg.classList.add('text-red-600');
+      // show a visible warning on the page if the placeholder hasn't been replaced
+      if(action.includes('YOUR_FORM_ID')){
+        const warn = document.createElement('div');
+        warn.className = 'mb-4 p-3 bg-yellow-100 text-yellow-800 rounded';
+        warn.innerHTML = '⚠️ Reminder: replace <code>YOUR_FORM_ID</code> in the form <code>action</code> with your Formspree endpoint (e.g. https://formspree.io/f/abc123). Without this the form won\'t send emails.';
+        form.parentNode.insertBefore(warn, form);
       }
+
+      async function submitHandler(e){
+        e.preventDefault();
+        msg.textContent = 'Submitting... please wait';
+        msg.classList.remove('text-green-600','text-red-600');
+        msg.classList.add('text-gray-600');
+
+        if(action.includes('YOUR_FORM_ID')){
+          msg.textContent = 'Please replace YOUR_FORM_ID in the form action before submitting.';
+          msg.classList.remove('text-gray-600');
+          msg.classList.add('text-red-600');
+          return;
+        }
+
+        try{
+          const data = new FormData(form);
+          const response = await fetch(action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if(response.ok){
+            msg.textContent = 'Application submitted successfully! You’ll receive an email confirmation.';
+            msg.classList.remove('text-gray-600');
+            msg.classList.add('text-green-600');
+            form.reset();
+          } else {
+            const json = await response.json().catch(()=>null);
+            msg.textContent = 'Submission failed: ' + (json && json.error ? json.error : response.statusText || response.status);
+            msg.classList.remove('text-gray-600');
+            msg.classList.add('text-red-600');
+          }
+        } catch(err){
+          console.error('Fetch failed, falling back to normal submit:', err);
+          // fallback: remove this handler and submit normally (navigates away)
+          form.removeEventListener('submit', submitHandler);
+          form.submit();
+        }
+      }
+
+      form.addEventListener('submit', submitHandler);
     });
   </script>
 </body>
